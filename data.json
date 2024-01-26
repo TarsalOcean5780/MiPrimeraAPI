@@ -1,0 +1,12 @@
+{"autos": [
+    {"id": 1, "modelo": "corolla", "marca": "Toyota", "año": 2023, "placas": "DJZ 3214"},
+    {"id": 2, "modelo": "civic", "marca": "Honda", "año": 2002, "placas": "XHD 2343"},
+    {"id": 3, "modelo": "cr-v", "marca": "Honda", "año": 2021, "placas": "XYZ789"},
+    {"id": 4, "modelo": "silverado", "marca": "Chevrolet", "año": 2021, "placas": "XY7839"}
+  ],
+  "clientes": [
+    {"id": 1, "nombre": "Jorge Hernandez", "usuario": "TarsalOcean12", "direccion": "Calle 12a col.Santa Rosa #4611"},
+    {"id": 2, "nombre": "Edson Ledezma", "usuario": "Elguero23", "direccion": "Calle 8a col.Elguero #4621"},
+    {"id": 3, "nombre": "Maria Legarreta", "usuario": "MariaSan20", "direccion": "Calle samaniego col.Dale #4567"},
+    {"id": 4, "nombre": "Juan Carlos", "usuario": "juanL31", "direccion": "Calle Sicomoro col.Tierra Nueva #3453"}
+  ]}
