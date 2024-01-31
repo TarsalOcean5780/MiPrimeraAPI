@@ -3,8 +3,12 @@ const fs = require('fs/promises');
 const app = express();
 const PORT = 3000;
 
-let data = {};
+let data = {
+  autos: [],
+  clientes: [],
+};
 
+let proximoIDCliente = 1;  
 
 app.use(express.json());
 
@@ -24,13 +28,21 @@ app.get('/api/autos/:id', (req, res) => {
 
 
 app.post('/api/autos', async (req, res) => {
-  const nuevoAuto = { ...req.body, id: data.autos.length + 1 };
+  const { modelo, marca, año, placas } = req.body;
+
+  if (!modelo || !marca || !año || !placas) {
+    return res.status(400).json({ mensaje: 'Todos los campos (modelo, marca, año, placas) son obligatorios' });
+  }
+
+  const nuevoAuto = { id: data.autos.length + 1, modelo, marca, año, placas };
   data.autos.push(nuevoAuto);
 
   await guardarDatosEnArchivo();
   
   res.json(nuevoAuto);
 });
+
+
 
 
 app.put('/api/autos/:id', async (req, res) => {
@@ -77,15 +89,22 @@ app.get('/api/clientes/:id', (req, res) => {
   res.json(cliente);
 });
 
-// Ruta para agregar un nuevo cliente
 app.post('/api/clientes', async (req, res) => {
-  const nuevoCliente = { ...req.body, id: data.clientes.length + 1 };
+  const { nombre, usuario, direccion } = req.body;
+
+  if (!nombre || !usuario || !direccion) {
+    return res.status(400).json({ mensaje: 'Todos los campos (nombre, usuario, direccion) son obligatorios' });
+  }
+
+  const nuevoCliente = { id: proximoIDCliente++, nombre, usuario, direccion };
   data.clientes.push(nuevoCliente);
 
   await guardarDatosEnArchivo();
   
   res.json(nuevoCliente);
 });
+//http POST http://localhost:3000/api/clientes nombre="Nuevo Cliente" usuario="nuevousuario" direccion="Nueva Dirección"
+
 
 // Ruta para actualizar un cliente
 app.put('/api/clientes/:id', async (req, res) => {
